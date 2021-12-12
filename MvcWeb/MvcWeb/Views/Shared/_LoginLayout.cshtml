@@ -1,0 +1,75 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="/Theme/Admin/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="/Theme/Admin/assets/css/minified/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/Theme/Admin/assets/css/minified/core.min.css" rel="stylesheet" type="text/css">
+    <link href="/Theme/Admin/assets/css/minified/components.min.css" rel="stylesheet" type="text/css">
+    <link href="/Theme/Admin/assets/css/minified/colors.min.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script type="text/javascript" src="/Theme/Admin/assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="/Theme/Admin/assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Theme/Admin/assets/js/plugins/loaders/blockui.min.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="/Theme/Admin/assets/js/core/app.js"></script>
+    <!-- /theme JS files -->
+</head>
+<body>
+    <!-- Main navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/Login/AdminGiris">Admin Yönetim Paneli</a>
+            <ul class="nav navbar-nav pull-right visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-mobile">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">
+                        <i class="icon-display4"></i> <span class="visible-xs-inline-block position-right">Web sitesine gidin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="icon-user-tie"></i> <span class="visible-xs-inline-block position-right"> Admine ulaşın</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /main navbar -->
+    <!-- Page container -->
+    <div class="page-container login-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Content area -->
+                <div class="content">
+                    <!-- Simple login form -->
+                    @RenderBody()
+                    <!-- /simple login form -->
+                </div>
+                <!-- /content area -->
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+    <!-- /page container -->
+</body>
+</html>

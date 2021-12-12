@@ -1,0 +1,11 @@
+﻿@using MvcWeb.Models.Entity
+@model IEnumerable<Heading>
+
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li><a href="/Heading/Detail/@item.HeadingId">@item.Name</a></li>       
+
+    }
+</ul>
