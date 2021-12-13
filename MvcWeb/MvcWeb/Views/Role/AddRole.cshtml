@@ -1,0 +1,59 @@
+﻿@model MvcWeb.Models.Entity.Role
+
+@{
+    ViewBag.Title = "AddRole";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Role</span> - Yönetimi</h4>
+        </div>
+    </div>
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="/Dashboard"><i class="icon-home2 position-left"></i> Dashboard</a></li>
+            <li><a href="/Role/Index">Role Listesi</a></li>
+            <li class="active">Role Ekle</li>
+        </ul>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <!-- Form horizontal -->
+    <div class="panel panel-flat">
+        <div class="panel-body">
+
+            <form class="form-horizontal" method="post">
+
+                <fieldset class="content-group">
+                    <div class="form-group">
+                        <label class="control-label col-lg-2">Role Adı</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="RoleName" class="form-control">
+                            @Html.ValidationMessageFor(x => x.RoleName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-lg-2">Açıklama</label>
+                        <div class="col-lg-10">
+                            <textarea name="Description" class="ckeditor" id="editor-full" rows="4" cols="4"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Kaydet <i class="icon-arrow-right14 position-right"></i></button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+    <!-- /form horizontal -->
+</div>
+<!-- /content area -->

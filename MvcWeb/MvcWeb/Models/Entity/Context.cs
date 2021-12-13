@@ -19,5 +19,6 @@ namespace MvcWeb.Models.Entity
         public DbSet<Content> Contents { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<UserSocial> UserSocials { get; set; }
     }
 }

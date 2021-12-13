@@ -6,9 +6,124 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<script type="text/javascript">
+    $(function () {
 
-@foreach (var item in Model)
-{
-    @item.RoleName
-}
+        $.extend($.fn.dataTable.defaults, {
+            autoWidth: false,
+            columnDefs: [{
+                orderable: false,
+                width: '100px',
+                targets: [5]
+            }],
+            dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+            language: {
+                search: '<span>Filtre:</span> _INPUT_',
+                lengthMenu: '<span>Göster:</span> _MENU_',
+                paginate: { 'first': 'İlk', 'last': 'Sonuncu', 'next': 'Sonraki', 'previous': 'Önceki' }
+            },
+            drawCallback: function () {
+                $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
+            },
+            preDrawCallback: function () {
+                $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
+            }
+        });
+
+        // Basic datatable
+        $('.datatable-basic').DataTable();
+
+        // Alternative pagination
+        $('.datatable-pagination').DataTable({
+            pagingType: "simple",
+            language: {
+                paginate: { 'next': 'Next &rarr;', 'previous': '&larr; Prev' }
+            }
+        });
+
+        // Datatable with saving state
+        $('.datatable-save-state').DataTable({
+            stateSave: true
+        });
+
+        // Scrollable datatable
+        $('.datatable-scroll-y').DataTable({
+            autoWidth: true,
+            scrollY: 300
+        });    
+
+        // External table additions
+        // ------------------------------
+        // Add placeholder to the datatable filter option
+        $('.dataTables_filter input[type=search]').attr('placeholder', 'Aranacak kelimeyi giriniz..');
+
+        // Enable Select2 select for the length option
+        $('.dataTables_length select').select2({
+            minimumResultsForSearch: "-1"
+        });
+    });
+</script>
+
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Role</span> - Yönetimi</h4>
+        </div>
+    </div>
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="/Dashboard"><i class="icon-home2 position-left"></i> Dashboard</a></li>
+            <li><a href="/Role/AddRole">Role Ekle</a></li>
+            <li class="active">Role Listesi</li>
+        </ul>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <!-- Panel body table -->
+    <div class="panel panel-flat">
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table datatable-basic table-responsive" id="datatable-basic">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Role</th>
+                            <td>Role Detayı</td>
+                            <th>Status</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.RoleId</td>
+                                <td>@item.RoleName</td>
+                                <td>@Html.Raw(item.Description)</td>
+                                @if (item.IsActive == true)
+                                {
+                                    <td><span class="label label-success">Active</span></td>
+                                }
+                                else
+                                {
+                                    <td><span class="label label-danger">DeActive</span></td>
+                                }
+                                <td>
+                                    <a href="/Role/DeleteRole/@item.RoleId" class="btn btn-danger">Sil</a>
+                                    <a href="/Role/EditRole/@item.RoleId" class="btn btn-info">Güncelle</a>
+                                    <a href="/Role/DetailRole/@item.RoleId" class="btn btn-warning">Detay</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /basic datatable -->
+        </div>
+        <!-- /content area -->
+    </div>
+</div>
+<!-- Content area -->
