@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MvcWeb.Models.Entity
 {
-    public class Roles
+    public class Role
     {
         [Key]
         public int RoleId { get; set; }

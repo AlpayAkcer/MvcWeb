@@ -23,7 +23,7 @@ namespace MvcWeb.Models.Entity
         public string Password { get; set; }
 
         public int RoleId { get; set; }
-        public virtual Roles Roles { get; set; }
+        public virtual Role Roles { get; set; }
 
     }
 }
