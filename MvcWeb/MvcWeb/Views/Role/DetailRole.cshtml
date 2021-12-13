@@ -1,4 +1,5 @@
-﻿@model MvcWeb.Models.AdminUserModel
+﻿@using MvcWeb.Models.Entity
+@model List<Admin>
 
     @{
         ViewBag.Title = "DetailRole";
@@ -25,7 +26,7 @@
     <!-- Content area -->
     <div class="content">
         <div class="row">
-            @foreach (var item in Model.Admins)
+            @foreach (var item in Model)
             {
                 <div class="col-lg-3 col-md-6">
                     <div class="thumbnail no-padding">
@@ -33,8 +34,8 @@
                             <img src="@item.Picture" alt="@item.UserName">
                             <div class="caption-overflow">
                                 <span>
-                                    <a href="/assets/images/placeholder.jpg" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
-                                    <a href="user_pages_profile.html" class="btn bg-success-400 btn-icon btn-xs"><i class="icon-link"></i></a>
+                                    <a href="@item.Picture" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
+                                    <a href="/Admin/Profile/@item.AdminId" class="btn bg-success-400 btn-icon btn-xs"><i class="icon-link"></i></a>
                                 </span>
                             </div>
                         </div>
@@ -42,9 +43,9 @@
                         <div class="caption text-center">
                             <h6 class="text-semibold no-margin">@item.Name @item.Surname<small class="display-block">@item.Title</small></h6>
                             <ul class="icons-list mt-15">
-                                @foreach (var x in Model.UserSocials)
+                                @foreach (var x in item.UserSocials.Where(x=> x.AdminId == item.AdminId))
                                 {
-                                    <li><a href="@x.Url" data-popup="tooltip" title="@x.Name" data-container="body"><i class="@x.IconCss"></i></a></li>
+                                    <li><a href="@x.Url" data-popup="tooltip" target="_blank" title="@x.Name" data-container="body"><i class="@x.IconCss"></i></a></li>
                                 }
                             </ul>
                         </div>

@@ -110,13 +110,9 @@ namespace MvcWeb.Controllers
         public ActionResult DetailRole(int id)
         {
             var valueUser = db.Roles.Find(id);
-            var value = db.Admins.Where(x => x.RoleId == id).ToList();
+            var value = db.Admins.Include("UserSocials").Where(x => x.RoleId == id).ToList();
             ViewBag.valueName = valueUser.RoleName;
-
-            AdminUserModel adm = new AdminUserModel();
-            adm.Admins = db.Admins.Where(x => x.AdminId == id).ToList();
-            adm.UserSocials = db.UserSocials.Where(x => x.AdminId == id).ToList();
-            return View(adm);
+            return View(value);
         }
     }
 }

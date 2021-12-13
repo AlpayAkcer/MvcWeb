@@ -130,6 +130,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -3402,6 +3403,7 @@
     <Content Include="Theme\Web\projects.html" />
     <Content Include="Theme\Web\services.html" />
     <Content Include="Theme\Web\team.html" />
+    <Content Include="Uploads\user\teacher-placeholder-female.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3921,6 +3923,7 @@
     <Content Include="Views\Role\AddRole.cshtml" />
     <Content Include="Views\Role\DetailRole.cshtml" />
     <Content Include="Views\Role\EditRole.cshtml" />
+    <Content Include="Views\Admin\AddAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,122 @@
+﻿@model MvcWeb.Models.Entity.Admin
+@{
+    ViewBag.Title = "AddAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Role</span> - Yönetimi</h4>
+        </div>
+    </div>
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="/Dashboard"><i class="icon-home2 position-left"></i> Dashboard</a></li>
+            <li><a href="/Admin/Index">Admin Listesi</a></li>
+            <li class="active">Admin Ekle</li>
+        </ul>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <!-- Form horizontal -->
+    <div class="panel panel-flat">
+        <div class="panel-body">
+
+            <form class="form-horizontal" method="post">
+                <fieldset class="content-group">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Kullanıcı Adı</label>
+                                <div class="col-lg-10">
+                                    <input type="text" name="UserName" class="form-control">
+                                    @Html.ValidationMessageFor(x => x.UserName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Ünvan</label>
+                                    <input type="text" name="Title" placeholder="Ünvan Giriniz" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Admin Adı</label>
+                                <div class="col-lg-10">
+                                    <input type="text" name="Name" class="form-control">
+                                    @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Soyad Adı</label>
+                                <div class="col-lg-10">
+                                    <input type="text" name="Surname" class="form-control">
+                                    @Html.ValidationMessageFor(x => x.Surname, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Role</label>
+                                <div class="col-lg-10">
+                                    @Html.DropDownListFor(x => x.RoleId, (List<SelectListItem>)ViewBag.valuerolelist, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.RoleId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Email</label>
+                                <div class="col-lg-10">
+                                    <input type="text" name="Email" placeholder="Email Adresiniz" class="form-control" />
+                                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Görsel</label>
+                                <div class="col-lg-10">
+                                    <div class="uploader">
+                                        <input type="file" class="file-styled" name="Picture"><span class="filename" style="user-select: none;">
+                                        </span><span class="action" style="user-select: none;"><i class="icon-plus2"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Admin Sifre</label>
+                                <input type="password" name="Password" placeholder="Şifre Giriniz" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Kaydet <i class="icon-arrow-right14 position-right"></i></button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+    <!-- /form horizontal -->
+</div>
+<!-- /content area -->
