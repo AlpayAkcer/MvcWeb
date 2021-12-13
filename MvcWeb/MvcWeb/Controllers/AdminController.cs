@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using MvcWeb.Helper;
 using MvcWeb.Models.Entity;
 using MvcWeb.Models.Validations;
 using System;
@@ -7,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static MvcWeb.Helper.ImageUpload;
 
 namespace MvcWeb.Controllers
 {
@@ -42,16 +44,25 @@ namespace MvcWeb.Controllers
 
             if (result.IsValid)
             {
-                if (Request.Files.Count > 0)
+                foreach (string item in Request.Files)
                 {
-                    string dosyaAdi = Path.GetFileName(Request.Files[0].FileName);
-                    string yol = "/Uploads/user/" + dosyaAdi;
-                    Request.Files[0].SaveAs(Server.MapPath(yol));
-                    admin.Picture = yol;
-                }
-                else
-                {
-                    admin.Picture = "/Uploads/user/user_image.jpg";
+                    HttpPostedFileBase file = Request.Files[item] as HttpPostedFileBase;
+                    if (file.ContentLength == 0)
+                        continue;
+                    if (file.ContentLength > 0)
+                    {
+                        ImageUpload imageUpload = new ImageUpload { Width = 500 };
+                        ImageResult imageResult = imageUpload.RenameUploadFile(file);
+
+                        if (imageResult.Success)
+                        {
+                            admin.Picture = imageResult.ImageName;
+                        }
+                        else
+                        {
+                            ViewBag.Error = imageResult.ErrorMessage;
+                        }
+                    }
                 }
 
                 db.Admins.Add(admin);
@@ -94,18 +105,25 @@ namespace MvcWeb.Controllers
 
             if (result.IsValid)
             {
-                if (Request.Files.Count > 0)
+                foreach (string item in Request.Files)
                 {
-                    string dosyaAdi = Path.GetFileName(Request.Files[0].FileName);
-                    string yol = "/Uploads/user/" + dosyaAdi;
-                    Request.Files[0].SaveAs(Server.MapPath(yol));
-                    adm.Picture = yol;
+                    HttpPostedFileBase file = Request.Files[item] as HttpPostedFileBase;
+                    if (file.ContentLength == 0)
+                        continue;
+                    if (file.ContentLength > 0)
+                    {
+                        ImageUpload imageUpload = new ImageUpload { Width = 500 };
+                        ImageResult imageResult = imageUpload.RenameUploadFile(file);
+                        if (imageResult.Success)
+                        {
+                            value.Picture = imageResult.ImageName;
+                        }
+                        else
+                        {
+                            ViewBag.Error = imageResult.ErrorMessage;
+                        }
+                    }
                 }
-                else
-                {
-                    adm.Picture = "/Uploads/no_image.png";
-                }
-
 
                 value.UserName = adm.UserName;
                 value.Name = adm.Name;
@@ -113,11 +131,9 @@ namespace MvcWeb.Controllers
                 value.Email = adm.Email;
                 value.RoleId = adm.RoleId;
                 value.Title = adm.Title;
-                value.Picture = adm.Picture;
                 value.Password = adm.Password;
                 db.SaveChanges();
                 TempData["AlertMessage"] = "Admin Başarıyla Güncellendi";
-                //c.Entry(d).State = EntityState.Modified;
                 return RedirectToAction("Index");
             }
             else

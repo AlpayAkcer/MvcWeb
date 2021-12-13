@@ -138,6 +138,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ImageUpload.cs" />
     <Compile Include="Migrations\202112121547156_mig_admin_tablosunun_guncellenmesi.cs" />
     <Compile Include="Migrations\202112121547156_mig_admin_tablosunun_guncellenmesi.designer.cs">
       <DependentUpon>202112121547156_mig_admin_tablosunun_guncellenmesi.cs</DependentUpon>
@@ -3403,7 +3404,6 @@
     <Content Include="Theme\Web\projects.html" />
     <Content Include="Theme\Web\services.html" />
     <Content Include="Theme\Web\team.html" />
-    <Content Include="Uploads\user\teacher-placeholder-female.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3929,6 +3929,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\resize\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -4,68 +4,96 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@using (Html.BeginForm("EditAdmin", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.HiddenFor(x => x.AdminId, new { @class = "form-control" })
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>UserName</label>
-                    @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Role</span> - Yönetimi</h4>
+        </div>
+    </div>
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="/Dashboard"><i class="icon-home2 position-left"></i> Dashboard</a></li>
+            <li><a href="/Admin/Index">Admin Listesi</a></li>
+            <li class="active">Admin Ekle</li>
+        </ul>
+    </div>
+</div>
+
+
+<!-- Content area -->
+<div class="content">
+    <!-- /page header -->
+    @using (Html.BeginForm("EditAdmin", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(x => x.AdminId, new { @class = "form-control" })
+        <div class="panel panel-flat">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset class="text-semibold">
+                            <legend><i class="icon-reading position-left"></i> Kişisel Bilgiler</legend>
+                            <div class="form-group">
+                                <label>Kullanıcı Adı</label>
+                                @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.UserName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>Ünvan</label>
+                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Surname, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>İsim</label>
+                                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label>Soyisim</label>
+                                @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-md-6">
+                        <fieldset>
+                            <legend class="text-semibold"><i class="icon-user-check position-left"></i> Kullanıcı Giriş Bilgileri</legend>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email:</label>
+                                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Yetki Rolü</label>
+                                        @Html.DropDownListFor(x => x.RoleId, (List<SelectListItem>)ViewBag.valuerolelist, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Şifre:</label>
+                                        <input type="password" name="Password" value="@Model.Password" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Görsel:</label>
+                                        <input type="file" name="Picture" id="UploadImage" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Title</label>
-                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Name</label>
-                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Surname</label>
-                    @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Role</label>
-                    @Html.DropDownListFor(x => x.RoleId, (List<SelectListItem>)ViewBag.valuerolelist, new { @class = "form-control" })
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Güncelle <i class="icon-arrow-right14 position-right"></i></button>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-4">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Mail</label>
-                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Password</label>
-                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Gorsel</label>
-                    <input type="file" name="Picture" id="Picture" class="form-control" />
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.card-body -->
-    <div class="card-footer">
-        <button type="submit" class="btn btn-warning">Güncelle</button>
-    </div>
-}
+    }
+</div>
+
+
