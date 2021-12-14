@@ -27,13 +27,12 @@
     <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-3 col-md-6 personel">
                 <div class="thumbnail no-padding">
                     <div class="thumb">
                         <img src="/Uploads/resize/@item.Picture" alt="@item.UserName">
                         <div class="caption-overflow">
                             <span>
-                                <a href="/Uploads/resize/@item.Picture" class="btn bg-success-400 btn-icon btn-xs" data-popup="lightbox"><i class="icon-plus2"></i></a>
                                 <a href="/Admin/EditAdmin/@item.AdminId" class="btn bg-success-400 btn-icon btn-xs"><i class="icon-link"></i></a>
                             </span>
                         </div>
@@ -47,6 +46,7 @@
                                 <li><a href="@x.Url" data-popup="tooltip" target="_blank" title="@x.Name" data-container="body"><i class="@x.IconCss"></i></a></li>
                             }
                         </ul>
+                        <a href="/Admin/Delete/@item.AdminId" class="btn btn-danger">Sil</a>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,69 @@
+﻿@using MvcWeb.Models.Entity
+@model List<Heading>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Başlıklar</span></h4>
+        </div>
+    </div>
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="/Dashboard"><i class="icon-home2 position-left"></i> Dashboard</a></li>
+            <li><a href="/Heading/AddHeading">Yeni Başlık Ekle</a></li>
+            <li class="active">Başlık Listesi</li>
+        </ul>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Başlık</th>
+                    <th scope="col">Durum</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int siraNo = 0;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@{siraNo++;} @siraNo</th>
+                        <td>@item.Name</td>
+                        <td>
+                            @if (item.IsActive == true)
+                            {
+                                <a href="/Heading/IsActiveChangingHeading/@item.HeadingId">
+                                    <span class="bg-success text-highlight">Aktif</span>
+                                </a>
+
+                            }
+                            else
+                            {
+                                <a href="/Heading/IsActiveChangingHeading/@item.HeadingId">
+                                    <span class="bg-danger text-highlight">Pasif</span>
+                                </a>
+                            }
+                        </td>
+                        <td>
+                            <a href="/Heading/EditHeading/@item.HeadingId" class="btn btn-warning">Güncelle</a>
+                            <a href="/Heading/DeleteHeading/@item.HeadingId" class="btn btn-danger">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<!-- /content area -->

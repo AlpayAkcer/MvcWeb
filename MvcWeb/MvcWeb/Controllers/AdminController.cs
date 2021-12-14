@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using static MvcWeb.Helper.ImageUpload;
@@ -37,6 +38,7 @@ namespace MvcWeb.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddAdmin(Admin admin)
         {
             AdminValidator adminValidator = new AdminValidator();
@@ -96,6 +98,7 @@ namespace MvcWeb.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditAdmin(Admin adm)
         {
             AdminValidator validations = new AdminValidator();
@@ -144,6 +147,23 @@ namespace MvcWeb.Controllers
                 }
             }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Admin deleteadmin = db.Admins.Find(id);
+            if (deleteadmin == null)
+            {
+                return HttpNotFound();
+            }
+            db.Admins.Remove(deleteadmin);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

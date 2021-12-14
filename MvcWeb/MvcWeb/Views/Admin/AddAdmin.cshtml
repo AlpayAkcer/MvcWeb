@@ -29,6 +29,7 @@
         <div class="panel-body">
             @using (Html.BeginForm("AddAdmin", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
+                @Html.AntiForgeryToken()
                 <div class="row">
                     <div class="col-md-6">
                         <fieldset class="text-semibold">
@@ -91,6 +92,6 @@
                     <button type="submit" class="btn btn-primary">Kaydet <i class="icon-arrow-right14 position-right"></i></button>
                 </div>
             }
-            </div>
+        </div>
     </div>
 </div>

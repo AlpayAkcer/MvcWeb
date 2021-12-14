@@ -11,7 +11,7 @@ namespace MvcWeb.Models.Entity
         [Key]
         public int HeadingId { get; set; }
 
-        [StringLength(70)]
+        [StringLength(120)]
         public string Name { get; set; }
 
         public bool IsActive { get; set; }
