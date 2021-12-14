@@ -67,7 +67,7 @@ namespace MvcWeb.Controllers
 
                 db.Admins.Add(admin);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Dashboard");
+                return RedirectToAction("Index");
             }
             else
             {
