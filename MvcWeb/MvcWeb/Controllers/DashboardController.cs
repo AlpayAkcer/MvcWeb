@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace MvcWeb.Controllers
 {
@@ -23,6 +24,13 @@ namespace MvcWeb.Controllers
         public PartialViewResult AdminMenuLeftSidePartial()
         {
             return PartialView();
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("AdminGiris", "Login");
         }
     }
 }

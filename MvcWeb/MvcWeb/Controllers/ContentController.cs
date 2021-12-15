@@ -78,7 +78,8 @@ namespace MvcWeb.Controllers
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
-            return View();
+
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -96,7 +97,6 @@ namespace MvcWeb.Controllers
             var icerikbul = db.Contents.Find(id);
             return View("EditContent", icerikbul);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -145,7 +145,7 @@ namespace MvcWeb.Controllers
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
-            return View();
+            return RedirectToAction("Index");
         }
 
         public ActionResult IsActive(int id)

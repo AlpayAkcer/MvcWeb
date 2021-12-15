@@ -1,5 +1,6 @@
 ﻿@using MvcWeb.Models.Entity
 @model List<Content>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -37,11 +38,10 @@
                 </tr>
             </thead>
             <tbody>
-                @{ int siraNo = 0;}
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <th scope="row">@{siraNo++;} @siraNo</th>
+                        <th scope="row">@item.ContentId</th>
                         <td>@item.Name</td>
                         <td>@item.Heading.Name</td>
                         <td>@Html.Raw(item.Description)</td>

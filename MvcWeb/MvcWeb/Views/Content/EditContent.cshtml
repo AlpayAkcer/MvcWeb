@@ -45,12 +45,13 @@
                                 @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-lg-4">Açıklama</label>
-                                <textarea name="Description" class="ckeditor" id="editor-full" rows="4" cols="4"></textarea>
+                                <textarea name="Description" class="ckeditor" id="editor-full" rows="4" cols="4">@Model.Description</textarea>
                             </div>
                             <div class="form-group">
                                 <label>Görsel:</label>
                                 <input type="file" name="Picture" id="UploadImage" class="form-control" />
+                                <br />
+                                <img src="/Uploads/resize/@Model.Picture" width="350" />
                             </div>
                         </fieldset>
                     </div>
