@@ -162,6 +162,7 @@
     <Compile Include="Models\Entity\UserSocial.cs" />
     <Compile Include="Models\Validations\AdminValidator.cs" />
     <Compile Include="Models\Validations\CategoryValidator.cs" />
+    <Compile Include="Models\Validations\ContentValidator.cs" />
     <Compile Include="Models\Validations\HeadingValidator.cs" />
     <Compile Include="Models\Validations\RoleValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -3933,6 +3934,8 @@
     <Content Include="Views\Heading\AddHeading.cshtml" />
     <Content Include="Views\Heading\EditHeading.cshtml" />
     <Content Include="Views\Content\Index.cshtml" />
+    <Content Include="Views\Content\AddContent.cshtml" />
+    <Content Include="Views\Content\EditContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

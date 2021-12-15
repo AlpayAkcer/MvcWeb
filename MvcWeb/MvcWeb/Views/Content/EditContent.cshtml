@@ -1,0 +1,68 @@
+﻿@model MvcWeb.Models.Entity.Content
+@{
+    ViewBag.Title = "EditContent";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">İçerik</span> - Yönetimi</h4>
+        </div>
+    </div>
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="/Dashboard"><i class="icon-home2 position-left"></i> Dashboard</a></li>
+            <li><a href="/Content/Index">İçerik Listesi</a></li>
+            <li><a href="/Content/AddContent">İçerik Ekle</a></li>
+            <li class="active">İçerik Güncelle</li>
+        </ul>
+    </div>
+</div>
+
+
+<!-- Content area -->
+<div class="content">
+    <!-- /page header -->
+    <div class="panel panel-flat">
+        <div class="panel-body">
+            @using (Html.BeginForm("EditContent", "Content", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(X => X.ContentId)
+                <div class="row">
+                    <div class="col-md-12">
+                        <fieldset class="text-semibold">
+                            <legend><i class="icon-reading position-left"></i> İçerik Başlık Bilgileri</legend>
+                            <div class="form-group">
+                                <label>Başlık Adı</label>
+                                @Html.DropDownListFor(x => x.HeadingId, (List<SelectListItem>)ViewBag.value, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label>Başlık Adı</label>
+                                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Açıklama</label>
+                                <textarea name="Description" class="ckeditor" id="editor-full" rows="4" cols="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Görsel:</label>
+                                <input type="file" name="Picture" id="UploadImage" class="form-control" />
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">Kaydet <i class="icon-arrow-right14 position-right"></i></button>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+

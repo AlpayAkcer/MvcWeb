@@ -1,8 +1,74 @@
-﻿
+﻿@using MvcWeb.Models.Entity
+@model List<Content>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
 
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">İçerik</span></h4>
+        </div>
+    </div>
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="/Dashboard"><i class="icon-home2 position-left"></i> Dashboard</a></li>
+            <li><a href="/Content/AddContent">Yeni İçerik Ekle</a></li>
+            <li class="active">İçerik Listesi</li>
+        </ul>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">İçerik Başlığı</th>
+                    <th scope="col">Bağlı Konum</th>
+                    <th scope="col">Açıklama</th>
+                    <th scope="col">Durum</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int siraNo = 0;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@{siraNo++;} @siraNo</th>
+                        <td>@item.Name</td>
+                        <td>@item.Heading.Name</td>
+                        <td>@Html.Raw(item.Description)</td>
+                        <td>
+                            @if (item.IsActive == true)
+                            {
+                                <a href="/Content/IsActive/@item.ContentId">
+                                    <span class="bg-success text-highlight">Aktif</span>
+                                </a>
+
+                            }
+                            else
+                            {
+                                <a href="/Content/IsActive/@item.ContentId">
+                                    <span class="bg-danger text-highlight">Pasif</span>
+                                </a>
+                            }
+                        </td>
+                        <td>
+                            <a href="/Content/EditContent/@item.ContentId" class="btn btn-warning">Güncelle</a>
+                            <a href="/Content/DeleteContent/@item.ContentId" class="btn btn-danger">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<!-- /content area -->
